@@ -18,7 +18,6 @@ const AppContextProvider = (props) => {
   const { getToken } = useAuth();
   const { isSignedIn } = useUser();
   const { openSignIn } = useClerk();
-
   const loadCreditsData = async () => {
     try {
       const token = await getToken();
@@ -42,9 +41,9 @@ const AppContextProvider = (props) => {
       setImage(image);
       setResultImage(false);
       navigate("/result");
-      const token = await getToken();
+      const token = await getToken()
 
-      const formData = new FormData();
+      const formData = new FormData()
       image && formData.append("image", image);
       const { data } = await axios.post(
         backendUrl + "/api/image/remove-bg",

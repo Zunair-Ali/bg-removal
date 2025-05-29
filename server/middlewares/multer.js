@@ -1,6 +1,6 @@
 import multer from 'multer'
 
-// creating multer middleware for parsing function
+// creating multer middleware for parsing formdata
 
 const storage = multer.diskStorage({
     filename : function(re,file,callback){
