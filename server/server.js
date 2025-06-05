@@ -9,11 +9,10 @@ import imageRouter from './routes/imageRoutes.js';
 const PORT = process.env.PORT || 4000;
 const app = express()
 
-// initilize middleware
+// Initialize middleware
 app.use(express.json())
 app.use(cors())
 await connectDB()
-
 // Api Route
 app.get('/',(req,res)=>res.send("API Working"))
 app.use('/api/user',userRouter)

@@ -5,14 +5,15 @@ import userModel from '../models/userModel.js'
 // http://localhost:4000/api/user/webhooks
 const clerkWebhooks = async(req,res) =>{
     try {
+        console.log("Webhook received:", JSON.stringify(req.body, null, 2));
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
         await whook.verify(JSON.stringify(req.body),{
             "svix-id":req.headers["svix-id"],
             "svix-timestamp" : req.headers["svix-timestamp"],
             "svix-signature" : req.headers["svix-signature"]
         })
-
         const {data,type} = req.body
+        console.log("Webhook received", req.body)
         switch (type) {
             case 'user.created':{
                 const userData = {
@@ -49,8 +50,8 @@ const clerkWebhooks = async(req,res) =>{
         }
 
     } catch (error) {
-        console.log(error.message);
-        res.json({success:false,message:error.message})
+        console.log("Webhook error:", error);
+        res.status(500).json({success:false,message:error.message})
         
     }
 }

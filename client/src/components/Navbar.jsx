@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { assets } from "../assets/assets"; // Adjust the path as necessary
 import { Link, useNavigate } from "react-router-dom";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
@@ -21,7 +21,7 @@ const Navbar = () => {
       <Link to="/">
         <img className="w-32 sm:w-44" src={assets.logo} alt="" />
       </Link>
-      {isSignedIn ? (
+      {isSignedIn ? 
         <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => navigate("/buy")}
@@ -35,7 +35,7 @@ const Navbar = () => {
           <p className="text-gray-600 max-sm:hidden">Hi, {user.fullName}</p>
           <UserButton />
         </div>
-      ) : (
+       : 
         <button
           onClick={() => openSignIn({})}
           className="bg-zinc-800 text-white flex items-center gap-2 px-4 py-3  sm:px-8 rounded-full text-sm cursor-pointer hover:bg-zinc-700 transition-colors duration-300"
@@ -43,7 +43,7 @@ const Navbar = () => {
           Get Started{" "}
           <img className="w-3 sm:w-4" src={assets.arrow_icon} alt="" />
         </button>
-      )}
+      }
     </div>
   );
 };
